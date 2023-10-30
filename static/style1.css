@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+body
+{
+    text-align: center;
+    background-image: url("space.png");
+    background-size: 1920px 1080px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Play', sans-serif;
+    color: white;
+}
+h1
+{
+    color: red;
+}
+form
+{
+    display: inline-block;
+    text-align: left;
+}
+.error
+{
+    color: red;
+}
+.flash-message
+{
+    margin-bottom:  20px;
+}
+.flash-message-success
+{
+    color: green;
+}
+.flash-message-error
+{
+    color: red;
+}
