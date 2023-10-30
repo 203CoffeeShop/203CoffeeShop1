@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
-
+ 
 con = sqlite3.connect('orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute('''
