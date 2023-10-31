@@ -7,28 +7,31 @@
     <link rel="stylesheet" href="static/style.css" type="text/css" media="all">
 </head> 
 <body>
-    <h1>Welcome to coffee cafe</h1>
-    <h2>Menu:</h2>
-    <ul>
-        {% for item in menu %}
-            <li>
-                {{ item.name }} - ${{ item.price }}
-            </li>
-        {% endfor %}
-    </ul>
-    <h2>Place an order:</h2>
-    <form action="/order" method="post">
-        <label for="coffee_id">Coffee:</label>
-        <select name="coffee_id" id="coffee_id">
+    <h1>Welcome to Coffee app [Name pending]</h1>
+    <div class="Menu">
+        <h2>Menu:</h2>
+        <ul>
             {% for item in menu %}
-                <option value="{{ item.id }}">{{ item.name }}</option>
+                <li>
+                    {{ item.name }} - ${{ item.price }}
+                </li>
             {% endfor %}
-        </select>
-        <br>
-        <label for="quantity">Quantity</label>
-        <input type="number" name="quantity", id="quantity" min="1", value="1">
-        <br>
-        <input type="submit" value="Place Order">
-    </form>
+        </ul>
+        <h2>Place an order:</h2>
+        <form action="/order" method="post">
+            <label for="coffee_id">Coffee:</label>
+            <select name="coffee_id" id="coffee_id">
+                {% for item in menu %}
+                    <option value="{{ item.ID }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="amount">amount</label>
+            <input type="number" name="amount", id="amount" min="1", value="1">
+            <br>
+            <input type="submit" value="Place Order">
+        </form>
+    </div>
+    
 </body>
 </html>

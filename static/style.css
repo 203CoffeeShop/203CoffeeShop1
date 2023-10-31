@@ -9,4 +9,10 @@ body
   /* display: flex;
   flex-direction: column;
   align-items: center; */
-} 
+}
+.Menu
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

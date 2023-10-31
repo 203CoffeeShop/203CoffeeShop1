@@ -9,8 +9,8 @@
 <body>
     <h1>Order Summary:</h1>
     <p>Coffee: {{ coffee.name }}</p>
-    <p>Quantity: {{ quantity }}</p>
-    <p>Total Price: ${{ total_price }}</p>
+    <p>amount: {{ amount }}</p>
+    <p>Total Price: ${{ total_cost }}</p>
     <h2>Confirm Order:</h2>
     <form action="/confirm" method="post">
         <input type="submit" value="Confirm Order">
