@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="static/style.css" type="text/css" media="all">
 </head>
 <body>
-    <h1>Login</h1>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul class="flashes">
@@ -17,17 +16,20 @@
             </ul>
         {% endif %}
     {% endwith %}
-    <form action="/" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Login">
-    </form>  
-    <form action="/create_account">
-        <input type="submit" value="Sign Up">
-    </form>
+    <div class="Login">
+        <form action="/" method="post">
+            <label for="username"></label>
+            <input type="text" id="username" name="username" required placeholder="Username">
+            <br>
+            <label for="password"></label>
+            <input type="text" id="password" name="password" required placeholder="Password">
+            <br>
+            <input type="submit" value="Login">
+        </form>  
+        <form class="regButton" action="/create_account">
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+    
 </body>
 </html>

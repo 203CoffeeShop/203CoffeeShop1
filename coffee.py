@@ -28,18 +28,17 @@ menu = [
     {'ID': 5, 'name': 'Americano', 'price': 3.0},
 ]
 
-con = sqlite3.connect('new_orders1.db')
+con = sqlite3.connect('new_orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")
 con.commit()
-con.close()
+
 
 def add_user(username, password):
-    con = sqlite3.connect('new_orders1.db')
+    con = sqlite3.connect('new_orders1.db', check_same_thread=False)
     cursor = con.cursor()
     cursor.execute("INSERT or replace INTO users (username, password) VALUES (?,?)", (username, password))
     con.commit()
-    con.close()
 
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
@@ -51,7 +50,7 @@ def create_account():
     return render_template('create_account.html')
 
 def get_user(username):
-    con = sqlite3.connect('new_orders1.db')
+    con = sqlite3.connect('new_orders1.db', check_same_thread=False)
     cursor = con.cursor()
     cursor.execute("SELECT * FROM users WHERE username=?", (username,))
     user = cursor.fetchone()
