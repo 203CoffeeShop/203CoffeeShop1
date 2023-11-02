@@ -6,15 +6,6 @@ body
   padding: 0;
   font-family: 'Play', sans-serif;
   color:  white;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-}
-.Menu
-{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .flash
@@ -59,16 +50,6 @@ body
   height: 50px;
   margin-left: 35px;
   margin-right: 41px;
-}
- 
-.Login form {
-  width: 100%;
-  margin-bottom: 10px;
-}
- 
-.regButton {
-  width: 100%;
-  text-align: left;
 }
 
 #submit
