@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="static/createstyle.css" type="text/css" media="all">
     <title>Signup</title>
 </head>
 <body>
-    <h2>Create an Account</h2>
-    <form action="/create_account" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="center-register">
+        <form class="center" action="/create_account" method="post">
+            <label for="username"></label>
+            <input type="text" id="username" name="username" required placeholder="Username">
+            <br>
+            <label for="password"></label>
+            <input type="password" id="password" name="password" required placeholder="Password">
+            <br>
+            <input id="submit" type="submit" value="Submit">
+        </form>
+    </div>
+    
 </body>
 </html>
+
+
