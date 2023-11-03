@@ -8,6 +8,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config["PERMANENT_SESSION_LIFETIME"] = 3600
 Session(app)
 
+#Connects to the sqlite Database and creates a table for the 
+#infomation needed if one doesn't exist with that name
 con = sqlite3.connect('new_orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute('''
@@ -20,6 +22,7 @@ cursor.execute('''
 
 con.commit()
 
+#List which contains all the drink which can be purchased
 menu = [
     {'ID': 1, 'name': 'Espresso', 'price': 2.5},
     {'ID': 2, 'name': 'Cappuccino', 'price': 3.0},
@@ -28,18 +31,22 @@ menu = [
     {'ID': 5, 'name': 'Americano', 'price': 3.0},
 ]
 
+#connects to the sqlite databse and creates a table for 
+# user information if one already doesn't exist
 con = sqlite3.connect('new_orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")
 con.commit()
 
-
+#Adds the users information into the database
 def add_user(username, password):
     con = sqlite3.connect('new_orders1.db', check_same_thread=False)
     cursor = con.cursor()
     cursor.execute("INSERT or replace INTO users (username, password) VALUES (?,?)", (username, password))
     con.commit()
 
+#Get's information and sends it to the add_user function
+#also redirects the user to the proper page to make an account
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
     if request.method == 'POST':
@@ -49,6 +56,7 @@ def create_account():
         return redirect(url_for('login'))
     return render_template('create_account.html')
 
+#Get's the name of the user from the database
 def get_user(username):
     con = sqlite3.connect('new_orders1.db', check_same_thread=False)
     cursor = con.cursor()
@@ -57,10 +65,15 @@ def get_user(username):
     con.close()
     return user
 
+#send the user to the homepage
 @app.route('/home')
 def home():
     return render_template('index.html', menu=menu)
 
+#The start page when you visit the website
+#Takes information from the user and checks if it exists in the database, if so 
+#the user is allowed to login 
+#else it shows an error
 @app.route('/', methods=['GET','POST'])
 def login():
     if request.method == 'POST':
@@ -98,7 +111,7 @@ def order():
 
 @app.route('/confirm', methods=['POST'])
 def confirm():
-    return 'Order confirmed'
+    return redirect('/home')
 
 if __name__ == '__main__':
     add_user("admin", "password")

@@ -1,0 +1,14 @@
+header
+{
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+}
+.taskbar
+{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+}
