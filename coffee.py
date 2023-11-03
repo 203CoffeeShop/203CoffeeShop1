@@ -70,6 +70,10 @@ def get_user(username):
 def home():
     return render_template('index.html', menu=menu)
 
+@app.route('/drinks')
+def drinks():
+    return render_template('drinks.html', menu=menu)
+
 #The start page when you visit the website
 #Takes information from the user and checks if it exists in the database, if so 
 #the user is allowed to login 

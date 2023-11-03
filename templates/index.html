@@ -6,44 +6,33 @@
     <title>Document</title>
     <link rel="stylesheet" href="static/style.css" type="text/css" media="all">
     <link rel="stylesheet" href="static/taskbar.css" type="text/css" media="all">
+    <link rel="stylesheet" href="static/homestyle.css" type="text/css" media="all">
 </head> 
 <body>
     <header>
         <div class="taskbar">
-            <h3><a href="/home"></a>Home</h3>
-            <h3>Drinks</h3>
+            <h3><a href="/home">Home</a></h3>
+            <h3><a href="/drinks">Drinks</a></h3>
         </div>
         <div></div>
         <div class="taskbar">
             <h3>Cart</h3>
             <h3>Settings</h3>
         </div>
-        
     </header>
     
-    <div class="Menu">
-        <h2>Menu:</h2>
-        <ul>
-            {% for item in menu %}
-                <li>
-                    {{ item.name }} - ${{ item.price }}
-                </li>
-            {% endfor %}
-        </ul>
-        <h2>Place an order:</h2>
-        <form action="/order" method="post">
-            <label for="coffee_id">Coffee:</label>
-            <select name="coffee_id" id="coffee_id">
-                {% for item in menu %}
-                    <option value="{{ item.ID }}">{{ item.name }}</option>
-                {% endfor %}
-            </select>
-            <br>
-            <label for="amount">amount</label>
-            <input type="number" name="amount", id="amount" min="1", value="1">
-            <br>
-            <input type="submit" value="Place Order">
-        </form>
+    <div class="center-big-image">
+        <div class="big-image">
+            <img src="static/coffee.jpeg" alt="">
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="medium-image-center">
+            <img class="medium-image" src="static/coffee.jpeg" alt="">
+            <img class="medium-image" src="static/coffee.jpeg" alt="">
+            <img class="medium-image" src="static/coffee.jpeg" alt="">
+        </div>
     </div>
     
 </body>

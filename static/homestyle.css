@@ -1,0 +1,27 @@
+.big-image
+{
+    background-color: white;
+    display: flex;
+    height: 360px;
+    width: 90%;
+    /* border: 2px solid red; */
+    justify-content: center;
+}
+.center-big-image
+{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.medium-image
+{
+    height: 400px;
+    width: 400px;
+}
+.medium-image-center
+{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}

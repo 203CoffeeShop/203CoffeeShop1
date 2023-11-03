@@ -11,4 +11,9 @@ header
     justify-content: space-between;
     margin-left: 50px;
     margin-right: 50px;
+    color: white;
+}
+a:-webkit-any-link {
+    color: white;
+    text-decoration: none;
 }
