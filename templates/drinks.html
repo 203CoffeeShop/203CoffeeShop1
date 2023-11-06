@@ -7,6 +7,7 @@
     <!-- <link rel="stylesheet" href="static/style.css" type="text/css" media="all"> -->
     <link rel="stylesheet" href="static/taskbar.css" type="text/css" media="all">
     <link rel="stylesheet" href="static/drinksstyle.css" type="text/css" media="all">
+    <link rel="stylesheet" href="static/cartstyle.css" type="text/css" media="all">
 </head>
 <body>
     <header>
@@ -18,7 +19,7 @@
                 </div>
                 <div></div>
                 <div class="taskbar">
-                    <h3>Cart</h3>
+                    <h3 style="cursor:pointer" onclick="openNav()">Cart</h3>
                     <h3>Profile</h3>
                 </div>
             </div>
@@ -82,11 +83,35 @@
         </form>
     </div> -->
  
-    <!-- Cart section -->
-    <div style="color: black;">
-        <h2>Cart:</h2>
-        <div id="cart"></div>
-        <div id="totalPrice">Total: $0.00</div>
+
+    <form action="/order" method="post">
+        <label for="coffee_id">Coffee:</label>
+        <select name="coffee_id" id="coffee_id">
+            {% for item in menu %}
+                <option value="{{ item.ID }}">{{ item.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="amount">amount</label>
+        <input type="number" name="amount", id="amount" min="1", value="1">
+        <br>
+        <input type="submit" value="Place Order">
+    </form>
+
+    <div id="myNav" class="overlay" style="height: 0%;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <div style="color: white;">
+                <h2>Cart:</h2>
+                <div id="cart"></div>
+                <div id="totalPrice">Total: $0.00</div>
+            </div>
+            <div>
+                <form action="/order" method="post">
+                    <input type="submit" value="Place Order">
+                </form>
+            </div>
+        </div>
     </div>
     <script src="static/addToOrder.js"></script>
 </body>
