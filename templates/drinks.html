@@ -82,21 +82,6 @@
             <input type="submit" value="Place Order">
         </form>
     </div> -->
- 
-
-    <form action="/order" method="post">
-        <label for="coffee_id">Coffee:</label>
-        <select name="coffee_id" id="coffee_id">
-            {% for item in menu %}
-                <option value="{{ item.ID }}">{{ item.name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <label for="amount">amount</label>
-        <input type="number" name="amount", id="amount" min="1", value="1">
-        <br>
-        <input type="submit" value="Place Order">
-    </form>
 
     <div id="myNav" class="overlay" style="height: 0%;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -113,6 +98,25 @@
             </div>
         </div>
     </div>
+    <hr style="margin-top: 20px;">
+    <footer>
+        <div class="footerStyle">
+          <div class="contact">
+            <div>
+              Conatact Information
+            </div>
+            <div>
+              <!-- Email: rasmus.nordberg@icloud.com -->
+            </div>
+          </div>
+          <div class="link">
+            <div>
+              Links
+            </div>
+          </div>
+        </div>
+      </footer>
+
     <script src="static/addToOrder.js"></script>
 </body>
 </html>
