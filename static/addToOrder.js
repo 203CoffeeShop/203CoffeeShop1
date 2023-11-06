@@ -1,5 +1,15 @@
 var totalPrice = 0; // Variable to store the total price
+var popular = false
  
+var coffeePopularSpan = document.createElement("span");
+            coffeePopularSpan.textContent = coffePopular;
+
+            if (coffePopular) {
+                coffeePopularSpan.textContent = " - Popular";
+            } else {
+                coffeePopularSpan.textContent = " - Not Popular";
+            }
+
         function addToCart(coffeeName, coffeePrice, coffePopular) {
             // Create a new div element for the cart item
             var cartItem = document.createElement("div");
@@ -11,9 +21,8 @@ var totalPrice = 0; // Variable to store the total price
             var coffeePriceSpan = document.createElement("span");
             coffeePriceSpan.textContent = " - $" + coffeePrice.toFixed(2);
 
-            var coffeePopularSpan = document.createElement("span");
-            coffeePopularSpan.textContent = coffePopular;
- 
+            
+
             // Append the spans to the cart item
             cartItem.appendChild(coffeeNameSpan);
             cartItem.appendChild(coffeePriceSpan);

@@ -32,10 +32,12 @@
             </div>
             <div class="image-center">
                 {% for item in menu %}
+                    {% if item.popular == True %}
                     <div class="button-align" onclick="addToCart('{{ item.name }}', {{ item.price }})">
                         <img class="image" src="static/coffee.jpeg" alt="">
                         <button>Add to order</button>
                     </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
