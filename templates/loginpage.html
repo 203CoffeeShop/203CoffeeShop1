@@ -7,36 +7,39 @@
     <link rel="stylesheet" href="static/style.css" type="text/css" media="all">
 </head>
 <body>
-    <div class="login-center">
-        <div class="login-box">
-            <h2>Welcome to [Name pending]</h2>
-            <form class="Login" action="/" method="post">
-                <label for="username"></label>
-                <input type="text" id="username" name="username" required placeholder="Username">
-                <br>
-                <label for="password"></label>
-                <input type="password" id="password" name="password" required placeholder="Password">
-                <br>
-                <input id="submit" type="submit" value="Login">
-            </form>  
-           
-            <form class="regButton" action="/create_account" method="get">
-                <input id="register" type="submit" value="Sign Up">
-            </form>
-           
+    <div style="background-color: #09310c; height: 100%;">
+        <div class="login-center">
+            <div class="login-box">
+                <h2>Welcome to [Name pending]</h2>
+                <form class="Login" action="/" method="post">
+                    <label for="username"></label>
+                    <input type="text" id="username" name="username" required placeholder="Username">
+                    <br>
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" required placeholder="Password">
+                    <br>
+                    <input id="submit" type="submit" value="Login">
+                </form>  
+               
+                <form class="regButton" action="/create_account" method="get">
+                    <input id="register" type="submit" value="Sign Up">
+                </form>
+               
+            </div>
+            
         </div>
-        
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flash">
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
     </div>
-    <div>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul class="flash">
-                {% for category, message in messages %}
-                    <p class="{{ category }}">{{ message }}</p>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-    </div>
+    
 </body>
 </html>

@@ -3,184 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="static/style.css" type="text/css" media="all">
+    <title>Drinks</title>
+    <!-- <link rel="stylesheet" href="static/style.css" type="text/css" media="all"> -->
     <link rel="stylesheet" href="static/taskbar.css" type="text/css" media="all">
     <link rel="stylesheet" href="static/drinksstyle.css" type="text/css" media="all">
-</head> 
+</head>
 <body>
     <header>
-        <div class="taskbar">
-            <h3><a href="/home">Home</a></h3>
-            <h3><a href="/drinks">Drinks</a></h3>
-        </div>
-        <div></div>
-        <div class="taskbar">
-            <h3>Cart</h3>
-            <h3>Settings</h3>
+        <div style="display: flex;justify-content: center;width: 100%;;">
+            <div style="width: 90%;display: flex;justify-content: space-between;">
+                <div class="taskbar">
+                    <h3><a href="/home">Home</a></h3>
+                    <h3><a href="/drinks">Drinks</a></h3>
+                </div>
+                <div></div>
+                <div class="taskbar">
+                    <h3>Cart</h3>
+                    <h3>Profile</h3>
+                </div>
+            </div>
         </div>
     </header>
-    
+   
     <div>
-        
         <div class="image-center-align">
             <div style="display: flex; width: 90%;">
                 <h3 style="margin-bottom: 0px;">Popular drinks</h3>
             </div>
             <div class="image-center">
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <!-- <ul>
-                        {% for item in menu %}
-                            <li>
-                                {{ item.name }} - ${{ item.price }}
-                            </li>
-                        {% endfor %}
-                    </ul> -->
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>           
-            </div>
-            <div class="image-center">
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div> 
+                {% for item in menu %}
+                    <div class="button-align" onclick="addToCart('{{ item.name }}', {{ item.price }})">
+                        <img class="image" src="static/coffee.jpeg" alt="">
+                        <button>Add to order</button>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-
+ 
         <div class="image-center-align">
             <div style="display: flex; width: 90%;">
                 <h3 style="margin-bottom: 0px;">All Drinks</h3>
             </div>
             <div class="image-center">
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>           
-            </div>
-            <div class="image-center">
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
-                <div class="button-align">
-                    <img class="image" src="static/coffee.jpeg" alt="">
-                    <button>Add to order</button>
-                </div>
+                {% for item in menu %}
+                    <div class="button-align" onclick="addToCart('{{ item.name }}', {{ item.price }})">
+                        <img class="image" src="static/coffee.jpeg" alt="">
+                        <button>Add to order</button>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        
     </div>
-    
-    <div class="Menu">
+   
+    <!-- <div class="Menu">
         <h2>Menu:</h2>
         <ul>
             {% for item in menu %}
@@ -203,7 +78,14 @@
             <br>
             <input type="submit" value="Place Order">
         </form>
+    </div> -->
+ 
+    <!-- Cart section -->
+    <div style="color: black;">
+        <h2>Cart:</h2>
+        <div id="cart"></div>
+        <div id="totalPrice">Total: $0.00</div>
     </div>
-    
+    <script src="static/addToOrder.js"></script>
 </body>
 </html>

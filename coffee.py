@@ -24,11 +24,29 @@ con.commit()
 
 #List which contains all the drink which can be purchased
 menu = [
-    {'ID': 1, 'name': 'Espresso', 'price': 2.5},
-    {'ID': 2, 'name': 'Cappuccino', 'price': 3.0},
-    {'ID': 3, 'name': 'Latte', 'price': 3.5},
-    {'ID': 4, 'name': 'Mocha', 'price': 4.0},
-    {'ID': 5, 'name': 'Americano', 'price': 3.0},
+    {'ID': 1, 'name': 'Flat White', 'price': 5, 'popular': True},
+    {'ID': 2, 'name': 'Cappuccino', 'price': 5, 'popular': True},
+    {'ID': 3, 'name': 'Cafe Latte', 'price': 5.5, 'popular': True},
+    {'ID': 4, 'name': 'Vanilla Latte', 'price': 6.5, 'popular': True},
+    {'ID': 5, 'name': 'Caramel Latte', 'price':6.5, 'popular': True},
+    {'ID': 6, 'name': 'Long Black', 'price': 4, 'popular': False},
+    {'ID': 7, 'name': 'Short Black', 'price': 4, 'popular': False},
+    {'ID': 8, 'name': 'Americano', 'price': 4, 'popular': False},
+    {'ID': 9, 'name': 'Macchiato', 'price': 4.5, 'popular': False},
+    {'ID': 10, 'name': 'Piccolo Latte', 'price': 4.5, 'popular': False},
+    {'ID': 11, 'name': 'Caramel Affogato', 'price': 7.5, 'popular': False},
+    {'ID': 12, 'name': 'Mocha', 'price': 6, 'popular': False},
+    {'ID': 13, 'name': 'Hot Chocolate', 'price': 5.5, 'popular': False},
+    {'ID': 14, 'name': 'White Hot Chocolate', 'price': 6.5, 'popular': False},
+    {'ID': 15, 'name': 'White Chocolate Mocha', 'price': 6.8, 'popular': False},
+    {'ID': 16, 'name': 'English Breakfast', 'price': 4.5, 'popular': False},
+    {'ID': 17, 'name': 'Green Tea', 'price': 4.5, 'popular': False},
+    {'ID': 18, 'name': 'Ginger Tea', 'price': 4.5, 'popular': False},
+    {'ID': 19, 'name': 'Lemon Tea', 'price': 4.5, 'popular': False},
+    {'ID': 20, 'name': 'Ice Coffee', 'price': 7, 'popular': False},
+    {'ID': 21, 'name': 'Ice Chocolate', 'price': 7, 'popular': False},
+    {'ID': 22, 'name': 'Ice Americano', 'price': 6, 'popular': False},
+    {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': False}
 ]
 
 #connects to the sqlite databse and creates a table for 
@@ -116,6 +134,7 @@ def order():
 @app.route('/confirm', methods=['POST'])
 def confirm():
     return redirect('/home')
+
 
 if __name__ == '__main__':
     add_user("admin", "password")
