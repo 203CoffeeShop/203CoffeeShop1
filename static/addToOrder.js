@@ -1,9 +1,6 @@
 var totalPrice = 0; // Variable to store the total price
 var popular = false
 
-const NameList = ["1"];
-const PriceList = [];
-
 
 var coffeePopularSpan = document.createElement("span");
             coffeePopularSpan.textContent = coffePopular;
@@ -25,9 +22,6 @@ var coffeePopularSpan = document.createElement("span");
  
             var coffeePriceSpan = document.createElement("span");
             coffeePriceSpan.textContent = " - $" + coffeePrice.toFixed(2);
-
-            NameList.push(coffeeName)
-            PriceList.push(coffeePrice)
             
             // Append the spans to the cart item
             cartItem.appendChild(coffeeNameSpan);
@@ -59,6 +53,3 @@ function openNav()
 {
     document.getElementById("myNav").style.height = "100%";
 }
-
-document.getElementById("demo1").innerHTML = NameList
-document.getElementById("demo2").innerHTML = PriceList

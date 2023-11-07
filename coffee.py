@@ -60,6 +60,8 @@ cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")
 con.commit()
 
+
+
 @app.route('/orders', methods=['POST'])
 def orders():
     return render_template('orderpage.html')
