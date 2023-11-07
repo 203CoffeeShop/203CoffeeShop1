@@ -49,12 +49,20 @@ menu = [
     {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': False}
 ]
 
+cart = [
+
+]
+
 #connects to the sqlite databse and creates a table for 
 # user information if one already doesn't exist
 con = sqlite3.connect('new_orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")
 con.commit()
+
+@app.route('/orders', methods=['POST'])
+def orders():
+    return render_template('orderpage.html')
 
 #Adds the users information into the database
 def add_user(username, password):

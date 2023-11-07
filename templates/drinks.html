@@ -35,6 +35,7 @@
                 {% for item in menu %}
                     {% if item.popular == True %}
                     <div class="button-align" onclick="addToCart('{{ item.name }}', {{ item.price }})">
+                        <h4>{{ item.name }}</h4>
                         <img class="image" src="static/coffee.jpeg" alt="">
                         <button>Add to order</button>
                     </div>
@@ -50,8 +51,10 @@
             <div class="image-center">
                 {% for item in menu %}
                     <div class="button-align" onclick="addToCart('{{ item.name }}', {{ item.price }})">
+                        <h4>{{ item.name }}</h4>
                         <img class="image" src="static/coffee.jpeg" alt="">
                         <button>Add to order</button>
+                        
                     </div>
                 {% endfor %}
             </div>
@@ -92,7 +95,7 @@
                 <div id="totalPrice">Total: $0.00</div>
             </div>
             <div>
-                <form action="/order" method="post">
+                <form action="/orders" method="post">
                     <input type="submit" value="Place Order">
                 </form>
             </div>

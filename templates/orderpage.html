@@ -8,13 +8,33 @@
 </head>
 <body>
     <h1>Order Summary:</h1>
-    <p>Coffee: {{ coffee.name }}</p>
-    <p>amount: {{ amount }}</p>
-    <p>Total Price: ${{ total_cost }}</p>
+    <p>Coffee:</p>
+    <p>amount: </p>
+    <p>Total Price:</p>
     <h2>Confirm Order:</h2>
     <form action="/confirm" method="post">
         <input type="submit" value="Confirm Order">
     </form>
 
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <footer>
+        <div class="footerStyle">
+          <div class="contact">
+            <div>
+              Conatact Information
+            </div>
+            <div>
+              <!-- Email: rasmus.nordberg@icloud.com -->
+            </div>
+          </div>
+          <div class="link">
+            <div>
+              Links
+            </div>
+          </div>
+        </div>
+      </footer>
 </body>
 </html>
