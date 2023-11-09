@@ -49,9 +49,7 @@ menu = [
     {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': False}
 ]
 
-cart = [
-
-]
+cart = []
 
 #connects to the sqlite databse and creates a table for 
 # user information if one already doesn't exist
@@ -59,8 +57,6 @@ con = sqlite3.connect('new_orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")
 con.commit()
-
-
 
 @app.route('/orders', methods=['POST'])
 def orders():
@@ -145,6 +141,10 @@ def order():
 def confirm():
     return redirect('/home')
 
+#Redirects the user to the settings page
+@app.route('/settings')
+def settings():
+    return render_template('settingspage.html')
 
 if __name__ == '__main__':
     add_user("admin", "password")
