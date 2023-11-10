@@ -88,14 +88,15 @@
     <div id="myNav" class="overlay" style="height: 0%;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
-            <div style="color: white;">
-                <h2>Cart:</h2>
-                <div id="cart"></div>
-                <div id="totalPrice">Total: $0.00</div>
-            </div>
-            <div>
+            
                 <form action="/orders" method="post">
-                    <input type="submit" value="Place Order">
+                    <div style="color: white;">
+                        <h2>Cart:</h2>
+                        <div id="cart"></div>
+                        <div id="totalPrice">Total: $0.00</div>
+                    </div>
+                    <div>
+                    <input name="cart_drinks" id="submit" type="submit" value="Place Order">
                 </form>
             </div>
         </div>
