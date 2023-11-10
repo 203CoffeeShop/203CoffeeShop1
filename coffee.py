@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
+from flask import Flask, render_template, render_template_string, request, redirect, url_for, session, jsonify, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import sqlite3, time
@@ -58,10 +58,6 @@ cursor = con.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")
 con.commit()
 
-@app.route('/orders', methods=['POST'])
-def orders():
-    return render_template('orderpage.html')
-
 #Adds the users information into the database
 def add_user(username, password):
     con = sqlite3.connect('new_orders1.db', check_same_thread=False)
@@ -94,9 +90,15 @@ def get_user(username):
 def home():
     return render_template('index.html', menu=menu)
 
-@app.route('/drinks')
+@app.route('/drinks', methods=['GET','POST'])
 def drinks():
+    if request.method == 'POST':
+        session['cart'] = request.form['cart']
     return render_template('drinks.html', menu=menu)
+
+@app.route('/orders', methods=['POST'])
+def orders():
+    return render_template('orderpage.html')
 
 #The start page when you visit the website
 #Takes information from the user and checks if it exists in the database, if so 

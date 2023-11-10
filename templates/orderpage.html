@@ -16,8 +16,10 @@
         <input type="submit" value="Confirm Order">
     </form>
 
-    <p id="demo1"></p>
-    <p id="demo2"></p>
+    <h1>Welcome</h1>      
+    {% if session['cart'] %}
+      <h1>Welcome {{ session['cart'] }}!</h1>
+    {% endif %}
 
     <footer>
         <div class="footerStyle">

@@ -59,31 +59,6 @@
             </div>
         </div>
     </div>
-   
-    <!-- <div class="Menu">
-        <h2>Menu:</h2>
-        <ul>
-            {% for item in menu %}
-                <li>
-                    {{ item.name }} - ${{ item.price }}
-                </li>
-            {% endfor %}
-        </ul>
-        <h2>Place an order:</h2>
-        <form action="/order" method="post">
-            <label for="coffee_id">Coffee:</label>
-            <select name="coffee_id" id="coffee_id">
-                {% for item in menu %}
-                    <option value="{{ item.ID }}">{{ item.name }}</option>
-                {% endfor %}
-            </select>
-            <br>
-            <label for="amount">amount</label>
-            <input type="number" name="amount", id="amount" min="1", value="1">
-            <br>
-            <input type="submit" value="Place Order">
-        </form>
-    </div> -->
 
     <div id="myNav" class="overlay" style="height: 0%;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -95,8 +70,7 @@
                         <div id="cart"></div>
                         <div id="totalPrice">Total: $0.00</div>
                     </div>
-                    <div>
-                    <input name="cart_drinks" id="submit" type="submit" value="Place Order">
+                    <input type="submit" value="Place Order">
                 </form>
             </div>
         </div>

@@ -1,15 +1,4 @@
 var totalPrice = 0; // Variable to store the total price
-var popular = false
-
-
-var coffeePopularSpan = document.createElement("span");
-            coffeePopularSpan.textContent = coffePopular;
-
-            if (coffePopular) {
-                coffeePopularSpan.textContent = " - Popular";
-            } else {
-                coffeePopularSpan.textContent = " - Not Popular";
-            }
 
         function addToCart(coffeeName, coffeePrice) 
         {
@@ -37,7 +26,8 @@ var coffeePopularSpan = document.createElement("span");
             document.getElementById("totalPrice").textContent = "Total: $" + totalPrice.toFixed(2);
  
             // Add a click event listener to show the price when clicked
-            cartItem.addEventListener("click", function() {
+            cartItem.addEventListener("click", function() 
+            {
                 alert("Price: $" + coffeePrice.toFixed(2));
             });
         }
