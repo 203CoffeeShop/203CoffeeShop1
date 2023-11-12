@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="static/homestyle.css" type="text/css" media="all">
 </head> 
 <body>
-    <header>
-        <div style="display: flex;justify-content: center;width: 100%;;">
-            <div style="width: 90%;display: flex;justify-content: space-between;">
-                <div class="taskbar">
-                    <h3><a href="/home">Home</a></h3>
-                    <h3><a href="/drinks">Drinks</a></h3>
-                </div>
-                <div></div>
-                <div class="taskbar">
-                    <h3>Cart</h3>
-                    <h3>Profile</h3>
-                </div>
+  <header>
+    <div style="display: flex;justify-content: center;width: 100%;;">
+        <div style="width: 90%;display: flex;justify-content: space-between;">
+            <div class="taskbar">
+                <h3><a href="/home">Home</a></h3>
+                <h3><a href="/drinks">Drinks</a></h3>
+            </div>
+            <div></div>
+            <div class="taskbar">
+                <h3 style="cursor:pointer" onclick="openNav()">Cart</h3>
+                <h3><a href="/settings">Profile</a></h3>
             </div>
         </div>
-    </header>
+    </div>
+</header>
     
     <div class="center-big-image">
         <div class="big-image">

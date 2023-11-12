@@ -125,19 +125,19 @@ def check_session():
     else:
         return jsonify({"satus": "expired"})
 
-@app.route('/order', methods=['POST'])
-def order():
-    order_id = int(request.form['coffee_id'])
-    amount = int(request.form['amount'])
-    coffee = next((item for item in menu if item['ID'] == order_id), None)
+# @app.route('/order', methods=['POST'])
+# def order():
+#     order_id = int(request.form['coffee_id'])
+#     amount = int(request.form['amount'])
+#     coffee = next((item for item in menu if item['ID'] == order_id), None)
 
-    if coffee:
-        total_cost = coffee['price'] * amount
-        cursor.execute("INSERT INTO neworders (coffee_name, amount, total_cost) VALUES (?,?,?)", (coffee['name'], amount, total_cost))
-        con.commit()
+#     if coffee:
+#         total_cost = coffee['price'] * amount
+#         cursor.execute("INSERT INTO neworders (coffee_name, amount, total_cost) VALUES (?,?,?)", (coffee['name'], amount, total_cost))
+#         con.commit()
 
-        return render_template('orderpage.html', coffee=coffee, amount=amount, total_cost=total_cost)
-    return 'Invalid order'
+#         return render_template('orderpage.html', coffee=coffee, amount=amount, total_cost=total_cost)
+#     return 'Invalid order'
 
 @app.route('/confirm', methods=['POST'])
 def confirm():
