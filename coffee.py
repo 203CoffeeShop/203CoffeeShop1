@@ -49,8 +49,6 @@ menu = [
     {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': False}
 ]
 
-cart = []
-
 #connects to the sqlite databse and creates a table for 
 # user information if one already doesn't exist
 con = sqlite3.connect('new_orders1.db', check_same_thread=False)
@@ -139,14 +137,48 @@ def check_session():
 #         return render_template('orderpage.html', coffee=coffee, amount=amount, total_cost=total_cost)
 #     return 'Invalid order'
 
-@app.route('/confirm', methods=['POST'])
-def confirm():
-    return redirect('/home')
+# @app.route('/confirm', methods=['POST'])
+# def confirm():
+#     return redirect('/home')
 
 #Redirects the user to the settings page
 @app.route('/settings')
 def settings():
     return render_template('settingspage.html')
+
+##########################################################
+##########################################################
+##########################################################
+#Testing sessions with this code dw about it
+
+@app.route('/set_email', methods=['GET', 'POST'])
+def set_email():
+    if request.method == 'POST':
+        # Save the form data to the session object
+        session['email'] = request.form['email_address']
+        return redirect(url_for('get_email'))
+
+    return """
+        <form method="post">
+            <label for="email">Enter your email address:</label>
+            <input type="email" id="email" name="email_address" required />
+            <button type="submit">Submit</button
+        </form>
+        """
+
+
+@app.route('/get_email')
+def get_email():
+    return render_template_string("""
+            <h1>Welcome </h1>
+            {% if session['cart'] %}
+                <h1>Welcome {{ session['email'] }}!</h1>
+            {% endif %}
+        """)
+
+##########################################################
+##########################################################
+##########################################################
 
 if __name__ == '__main__':
     add_user("admin", "password")
