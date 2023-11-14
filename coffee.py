@@ -13,9 +13,10 @@ Session(app)
 con = sqlite3.connect('new_orders1.db', check_same_thread=False)
 cursor = con.cursor()
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS neworders (
+    CREATE TABLE IF NOT EXISTS orderList (
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         coffee_name TEXT NOT NULL,
+        cost REAL NOT NULL,
         amount INTEGER NOT NULL,
         total_cost REAL NOT NULL)
 ''')
@@ -82,7 +83,47 @@ def get_user(username):
     user = cursor.fetchone()
     con.close()
     return user
+#####################################################
 
+@app.route('/base')
+def base():
+    return render_template('base.html')
+@app.route('/index1')
+def index1():
+    return render_template('index1.html')
+@app.route('/DrinkMenu')
+def DrinkMenu():
+    return render_template('DrinkMenu.html', menu=menu)
+
+@app.route('/cart', methods=['POST'])
+def cart():
+    con = sqlite3.connect('new_orders1.db', check_same_thread=False)
+    cursor = con.cursor()
+
+    coffee_name = request.form.get('coffee_name')
+    price = float(request.form.get('price'))
+    amount = int(request.form.get('amount'))
+
+    total_cost = price * amount
+
+    # Save order details to SQLite Database
+    cursor.execute("INSERT INTO orderList (coffee_name, price, amount, total_cost) VALUES (?, ?, ?, ?)",(coffee_name, price, amount, total_cost))
+    con.commit()
+
+    return jsonify()
+
+@app.route('/cart_display')
+def cart_displa():
+    con = sqlite3.connect('new_orders1.db', check_same_thread=False)
+    cursor = con.cursor()
+
+    cursor.execute("SELECT * FROM orderList")
+    orders = cursor.fetchall()
+    total_cost = sum(order['total_cost'] for order in orders)
+
+    return render_template('cart.html', orders=orders, total_cost=total_cost)
+
+########################################
 #send the user to the homepage
 @app.route('/home')
 def home():
@@ -131,7 +172,7 @@ def check_session():
 
 #     if coffee:
 #         total_cost = coffee['price'] * amount
-#         cursor.execute("INSERT INTO neworders (coffee_name, amount, total_cost) VALUES (?,?,?)", (coffee['name'], amount, total_cost))
+#         cursor.execute("INSERT INTO orderList (coffee_name, amount, total_cost) VALUES (?,?,?)", (coffee['name'], amount, total_cost))
 #         con.commit()
 
 #         return render_template('orderpage.html', coffee=coffee, amount=amount, total_cost=total_cost)
@@ -178,7 +219,7 @@ def get_email():
 
 ##########################################################
 ##########################################################
-##########################################################
+############################################################
 
 if __name__ == '__main__':
     add_user("admin", "password")

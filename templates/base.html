@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/taskbar.css" type="text/css" media="all">
-    <link rel="stylesheet" href="static/settings.css" type="text/css" media="all">
-    <title>Document</title>
+    <link rel="stylesheet" href="static/drinksstyle.css" type="text/css" media="all">
+    <link rel="stylesheet" href="static/cartstyle.css" type="text/css" media="all">
+    <title>Coffee Shop</title>
+    <!-- Include any additional CSS or JavaScript libraries here -->
 </head>
 <body>
     <header>
@@ -23,5 +25,14 @@
             </div>
         </div>
     </header>
+ 
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+ 
+    <footer>
+        <p>&copy; 2023 Coffee Shop</p>
+    </footer>
+    <!-- Include any additional scripts here -->
 </body>
 </html>
