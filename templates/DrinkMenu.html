@@ -38,12 +38,12 @@
     <div>
         <div class="image-center-align">
             <div style="display: flex; width: 90%;">
-                <h3 style="margin-bottom: 0px;">All drinks</h3>
+                <h3 style="margin-bottom: 0px;">Hot Coffee drinks</h3>
             </div>
             <div class="image-center">
                 <ul class="UL-Design">
                     {% for item in menu %}
-                    {% if item.popular != True %}
+                    {% if item.type == 'coffee' %}
                     <div class="button-align">
                         <li class="LI-Design">
                             <img class="image" src="static/coffee.jpeg" alt="">
@@ -69,6 +69,107 @@
         </div>
     </div>
     
+    <div>
+        <div class="image-center-align">
+            <div style="display: flex; width: 90%;">
+                <h3 style="margin-bottom: 0px;">Chcolate drinks</h3>
+            </div>
+            <div class="image-center">
+                <ul class="UL-Design">
+                    {% for item in menu %}
+                    {% if item.type == 'chocolate' %}
+                    <div class="button-align">
+                        <li class="LI-Design">
+                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <form class="add-to-cart-form">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <input type="hidden" name="coffee_name" value="{{ item.name }}">
+                                    <input type="hidden" name="price" value="{{ item.price }}">
+                                    <span><strong>{{ item.name }}</strong> - ${{ item.price }}</span>
+                                    <span>
+                                        <label for="amount">Amount:</label>
+                                        <input style="width: 50px;" type="number" name="amount" value="1" min="1">
+                                    </span>
+                                    
+                                    <button type="button" class="add-to-cart-btn">Add to Cart</button>    
+                                </div>
+                            </form>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="image-center-align">
+            <div style="display: flex; width: 90%;">
+                <h3 style="margin-bottom: 0px;">Tea drinks</h3>
+            </div>
+            <div class="image-center">
+                <ul class="UL-Design">
+                    {% for item in menu %}
+                    {% if item.type == 'tea' %}
+                    <div class="button-align">
+                        <li class="LI-Design">
+                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <form class="add-to-cart-form">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <input type="hidden" name="coffee_name" value="{{ item.name }}">
+                                    <input type="hidden" name="price" value="{{ item.price }}">
+                                    <span><strong>{{ item.name }}</strong> - ${{ item.price }}</span>
+                                    <span>
+                                        <label for="amount">Amount:</label>
+                                        <input style="width: 50px;" type="number" name="amount" value="1" min="1">
+                                    </span>
+                                    
+                                    <button type="button" class="add-to-cart-btn">Add to Cart</button>    
+                                </div>
+                            </form>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="image-center-align">
+            <div style="display: flex; width: 90%;">
+                <h3 style="margin-bottom: 0px;">Cold drinks</h3>
+            </div>
+            <div class="image-center">
+                <ul class="UL-Design">
+                    {% for item in menu %}
+                    {% if item.type == 'cold' %}
+                    <div class="button-align">
+                        <li class="LI-Design">
+                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <form class="add-to-cart-form">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <input type="hidden" name="coffee_name" value="{{ item.name }}">
+                                    <input type="hidden" name="price" value="{{ item.price }}">
+                                    <span><strong>{{ item.name }}</strong> - ${{ item.price }}</span>
+                                    <span>
+                                        <label for="amount">Amount:</label>
+                                        <input style="width: 50px;" type="number" name="amount" value="1" min="1">
+                                    </span>
+                                    
+                                    <button type="button" class="add-to-cart-btn">Add to Cart</button>    
+                                </div>
+                            </form>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Add JavaScript to handle adding items to the cart using AJAX
