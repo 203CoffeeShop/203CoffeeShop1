@@ -170,7 +170,21 @@
             </div>
         </div>
     </div>
-
+    <div id="myNav" class="overlay" style="height: 0%;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            
+                <form action="/get_email" method="post">
+                    <div style="color: white;">
+                        <h2>Cart:</h2>
+                        <div id="cart"></div>
+                        <div id="totalPrice">Total: $0.00</div>
+                    </div>
+                    <input type="submit" value="Place Order">
+                </form>
+            </div>
+        </div>
+    </div>
     <script>
         // Add JavaScript to handle adding items to the cart using AJAX
         document.addEventListener('DOMContentLoaded', function () {
@@ -196,4 +210,5 @@
             });
         });
     </script>
+    <script src="static/addToOrder.js"></script>
 {% endblock %}
