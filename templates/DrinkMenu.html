@@ -188,27 +188,37 @@
     <script>
         // Add JavaScript to handle adding items to the cart using AJAX
         document.addEventListener('DOMContentLoaded', function () {
-            var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
-            addToCartButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var form = this.closest('.add-to-cart-form');
-                    var formData = new FormData(form);
+    addToCartButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var form = this.closest('.add-to-cart-form');
+            var formData = {
+                coffee_name: form.querySelector('[name="coffee_name"]').value,
+                price: form.querySelector('[name="price"]').value,
+                amount: form.querySelector('[name="amount"]').value
+            };
 
-                    fetch('/add_to_cart', {
-                        method: 'POST',
-                        body: formData,
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                });
+            console.log('FormData:', formData);
+
+            fetch('/add_to_cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data);
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
             });
         });
+    });
+});
     </script>
     <script src="static/addToOrder.js"></script>
 {% endblock %}

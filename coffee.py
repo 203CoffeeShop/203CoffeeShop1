@@ -1,4 +1,4 @@
-from flask import Flask, render_template, render_template_string, request, redirect, url_for, session, jsonify, flash
+from flask import Flask, render_template, render_template_string, request, redirect, url_for, session, jsonify, flash,sessions
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import sqlite3, time
@@ -97,31 +97,64 @@ def DrinkMenu():
 
 @app.route('/cart', methods=['POST'])
 def cart():
-    con = sqlite3.connect('new_orders1.db', check_same_thread=False)
-    cursor = con.cursor()
+    # Clear the existing cart session
+    session['cart'] = []
 
+    # Retrieve data from the form
     coffee_name = request.form.get('coffee_name')
     price = float(request.form.get('price'))
     amount = int(request.form.get('amount'))
 
     total_cost = price * amount
 
-    # Save order details to SQLite Database
-    cursor.execute("INSERT INTO orderList (coffee_name, price, amount, total_cost) VALUES (?, ?, ?, ?)",(coffee_name, price, amount, total_cost))
-    con.commit()
+    # Save order details to session (cart)
+    item = {
+        'coffee_name': coffee_name,
+        'price': price,
+        'amount': amount,
+        'total_cost': total_cost
+    }
+
+    if 'cart' not in session:
+        session['cart'] = []
+
+    session['cart'].append(item)
+    session.modified = True  # Ensure session is saved
 
     return jsonify()
 
 @app.route('/cart_display')
-def cart_displa():
+def cart_display():
+    if 'cart' in session:
+        orders = session['cart']
+        total_cost = sum(order['total_cost'] for order in orders)
+        return render_template('cart.html', orders=orders, total_cost=total_cost)
+    else:
+        flash("Your cart is empty.", "info")
+        return render_template('cart.html', orders=[], total_cost=0)
+    
+@app.route('/place_order', methods=['POST'])
+def place_order():
     con = sqlite3.connect('new_orders1.db', check_same_thread=False)
     cursor = con.cursor()
 
     cursor.execute("SELECT * FROM orderList")
-    orders = cursor.fetchall()
-    total_cost = sum(order['total_cost'] for order in orders)
+    orders_before_placing = cursor.fetchall()
 
-    return render_template('cart.html', orders=orders, total_cost=total_cost)
+    # Optionally, you can perform additional processing or validation here
+
+    # Clear the cart after placing the order
+    cursor.execute("DELETE FROM orderList")
+    con.commit()
+
+    cursor.execute("SELECT * FROM orderList")
+    orders_after_placing = cursor.fetchall()
+
+    print("Orders before placing:", orders_before_placing)
+    print("Orders after placing:", orders_after_placing)
+
+    return render_template('order_confirmation.html', orders=orders_before_placing)
+
 
 ########################################
 #send the user to the homepage
@@ -156,7 +189,29 @@ def login():
         else:
             flash("Invalid username or password", "error")
     return render_template('loginpage.html')
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    if request.method == 'POST':
+        data = request.json
+        print('Received data:', data)
 
+        
+        if 'cart' not in session:
+            session['cart'] = []
+
+        # Add the item to the cart
+        item = {
+            'coffee_name': data.get('coffee_name'),
+            'price': float(data.get('price')),
+            'amount': int(data.get('amount')),
+            'total_cost': float(data.get('price')) * int(data.get('amount'))
+        }
+
+        session['cart'].append(item)
+        session.modified = True  # Ensure session is saved
+
+        return jsonify({'message': 'Item added to cart successfully'})
+    
 @app.route('/check_session')
 def check_session():
     if "username" in session:
@@ -208,7 +263,7 @@ def set_email():
         """
 
 
-@app.route('/get_email')
+@app.route('/get_email', methods=['GET', 'POST'])
 def get_email():
     return render_template_string("""
             <h1>Welcome </h1>

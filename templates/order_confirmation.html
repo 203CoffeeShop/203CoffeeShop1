@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Order Confirmation</h2>
+    <ul>
+        {% for order in orders %}
+            <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Quantity: {{ order['quantity'] }} - Total: ${{ order['total_cost'] }}</li>
+        {% endfor %}
+    </ul>
+    <p>Thank you for your order!</p>
+{% endblock %}
