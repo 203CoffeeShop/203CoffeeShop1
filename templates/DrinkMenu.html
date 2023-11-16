@@ -173,18 +173,53 @@
     <div id="myNav" class="overlay" style="height: 0%;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
+            <!-- -->
+            <h2 style="color: white;">Cart</h2>
+            <ul>
+                {% for order in orders %}
+                    <li style="color: white;">{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }} - Total: ${{ order['total_cost'] }}</li>
+                {% endfor %}
+            </ul>
+            <p style="color: white;">Total Cost: ${{ total_cost }}</p>
             
-                <form action="/get_email" method="post">
-                    <div style="color: white;">
-                        <h2>Cart:</h2>
-                        <div id="cart"></div>
-                        <div id="totalPrice">Total: $0.00</div>
-                    </div>
-                    <input type="submit" value="Place Order">
-                </form>
+            <form action="/place_order" method="post">
+                <input type="submit" value="Place Order">
+            </form>
+        
+            <button id="toggleCartBtn">Toggle Cart</button>
+        
+            <div id="cartContent" style="display: none;">
+                <!-- Cart content goes here -->
+                <ul>
+                    {% for order in orders %}
+                        <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }} - Total: ${{ order['total_cost'] }}</li>
+                    {% endfor %}
+                </ul>
+                <p style="color: white;">Total Cost: ${{ total_cost }}</p>
+            </div>
+            <!-- -->
             </div>
         </div>
     </div>
+
+    <!--    -->
+    <script>
+        // Add JavaScript to toggle the cart content visibility
+        document.addEventListener('DOMContentLoaded', function () {
+            var toggleCartBtn = document.getElementById('toggleCartBtn');
+            var cartContent = document.getElementById('cartContent');
+
+            toggleCartBtn.addEventListener('click', function() {
+                if (cartContent.style.display === 'none') {
+                    cartContent.style.display = 'block';
+                } else {
+                    cartContent.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <!--    -->
+
     <script>
         // Add JavaScript to handle adding items to the cart using AJAX
         document.addEventListener('DOMContentLoaded', function () {

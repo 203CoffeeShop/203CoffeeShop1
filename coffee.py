@@ -93,7 +93,13 @@ def index1():
     return render_template('index1.html')
 @app.route('/DrinkMenu')
 def DrinkMenu():
-    return render_template('DrinkMenu.html', menu=menu)
+    if 'cart' in session:
+        orders = session['cart']
+        total_cost = sum(order['total_cost'] for order in orders)
+        return render_template('DrinkMenu.html', orders=orders, total_cost=total_cost, menu=menu)
+    else:
+        return render_template('DrinkMenu.html', menu=menu)
+    
 
 @app.route('/cart', methods=['POST'])
 def cart():
@@ -189,13 +195,13 @@ def login():
         else:
             flash("Invalid username or password", "error")
     return render_template('loginpage.html')
+
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     if request.method == 'POST':
         data = request.json
         print('Received data:', data)
 
-        
         if 'cart' not in session:
             session['cart'] = []
 
@@ -210,7 +216,7 @@ def add_to_cart():
         session['cart'].append(item)
         session.modified = True  # Ensure session is saved
 
-        return jsonify({'message': 'Item added to cart successfully'})
+        return jsonify()
     
 @app.route('/check_session')
 def check_session():
@@ -218,24 +224,6 @@ def check_session():
         return jsonify({"satus": "active"})
     else:
         return jsonify({"satus": "expired"})
-
-# @app.route('/order', methods=['POST'])
-# def order():
-#     order_id = int(request.form['coffee_id'])
-#     amount = int(request.form['amount'])
-#     coffee = next((item for item in menu if item['ID'] == order_id), None)
-
-#     if coffee:
-#         total_cost = coffee['price'] * amount
-#         cursor.execute("INSERT INTO orderList (coffee_name, amount, total_cost) VALUES (?,?,?)", (coffee['name'], amount, total_cost))
-#         con.commit()
-
-#         return render_template('orderpage.html', coffee=coffee, amount=amount, total_cost=total_cost)
-#     return 'Invalid order'
-
-# @app.route('/confirm', methods=['POST'])
-# def confirm():
-#     return redirect('/home')
 
 #Redirects the user to the settings page
 @app.route('/settings')
