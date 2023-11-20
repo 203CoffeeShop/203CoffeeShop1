@@ -46,7 +46,7 @@
                     {% if item.type == 'coffee' %}
                     <div class="button-align">
                         <li class="LI-Design">
-                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <img class="image" src="{{ item.image }}" alt="">
                             <form class="add-to-cart-form">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <input type="hidden" name="coffee_name" value="{{ item.name }}">
@@ -80,7 +80,7 @@
                     {% if item.type == 'chocolate' %}
                     <div class="button-align">
                         <li class="LI-Design">
-                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <img class="image" src="{{ item.image }}" alt="">
                             <form class="add-to-cart-form">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <input type="hidden" name="coffee_name" value="{{ item.name }}">
@@ -114,7 +114,7 @@
                     {% if item.type == 'tea' %}
                     <div class="button-align">
                         <li class="LI-Design">
-                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <img class="image" src="{{ item.image }}" alt="">
                             <form class="add-to-cart-form">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <input type="hidden" name="coffee_name" value="{{ item.name }}">
@@ -148,7 +148,7 @@
                     {% if item.type == 'cold' %}
                     <div class="button-align">
                         <li class="LI-Design">
-                            <img class="image" src="static/coffee.jpeg" alt="">
+                            <img class="image" src="{{ item.image }}" alt="">
                             <form class="add-to-cart-form">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     <input type="hidden" name="coffee_name" value="{{ item.name }}">
