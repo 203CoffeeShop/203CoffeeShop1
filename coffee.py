@@ -23,31 +23,32 @@ cursor.execute('''
 
 con.commit()
 
+
 #List which contains all the drink which can be purchased
 menu = [
-    {'ID': 1, 'name': 'Flat White', 'price': 5, 'popular': False, 'type': 'coffee'},
-    {'ID': 2, 'name': 'Cappuccino', 'price': 5, 'popular': True, 'type': 'coffee'},
-    {'ID': 3, 'name': 'Cafe Latte', 'price': 5.5, 'popular': False, 'type': 'coffee'},
-    {'ID': 4, 'name': 'Vanilla Latte', 'price': 6.5, 'popular': False, 'type': 'coffee'},
-    {'ID': 5, 'name': 'Caramel Latte', 'price':6.5, 'popular': False, 'type': 'coffee'},
-    {'ID': 6, 'name': 'Long Black', 'price': 4, 'popular': False, 'type': 'coffee'},
-    {'ID': 7, 'name': 'Short Black', 'price': 4, 'popular': False, 'type': 'coffee'},
-    {'ID': 8, 'name': 'Americano', 'price': 4, 'popular': False, 'type': 'coffee'},
-    {'ID': 9, 'name': 'Macchiato', 'price': 4.5, 'popular': False, 'type': 'coffee'},
-    {'ID': 10, 'name': 'Piccolo Latte', 'price': 4.5, 'popular': False, 'type': 'coffee'},
-    {'ID': 11, 'name': 'Caramel Affogato', 'price': 7.5, 'popular': False, 'type': 'coffee'},
-    {'ID': 12, 'name': 'Mocha', 'price': 6, 'popular': True, 'type': 'chocolate'},
-    {'ID': 13, 'name': 'Hot Chocolate', 'price': 5.5, 'popular': False, 'type': 'chocolate'},
-    {'ID': 14, 'name': 'White Hot Chocolate', 'price': 6.5, 'popular': False, 'type': 'chocolate'},
-    {'ID': 15, 'name': 'White Chocolate Mocha', 'price': 6.8, 'popular': True, 'type': 'chocolate'},
-    {'ID': 16, 'name': 'English Breakfast', 'price': 4.5, 'popular': False, 'type': 'tea'},
-    {'ID': 17, 'name': 'Green Tea', 'price': 4.5, 'popular': True, 'type': 'tea'},
-    {'ID': 18, 'name': 'Ginger Tea', 'price': 4.5, 'popular': False, 'type': 'tea'},
-    {'ID': 19, 'name': 'Lemon Tea', 'price': 4.5, 'popular': False, 'type': 'tea'},
-    {'ID': 20, 'name': 'Ice Coffee', 'price': 7, 'popular': False, 'type': 'cold'},
-    {'ID': 21, 'name': 'Ice Chocolate', 'price': 7, 'popular': False, 'type': 'cold'},
-    {'ID': 22, 'name': 'Ice Americano', 'price': 6, 'popular': False, 'type': 'cold'},
-    {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': True, 'type': 'cold'}
+    {'ID': 1, 'name': 'Flat White', 'price': 5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 2, 'name': 'Cappuccino', 'price': 5, 'popular': True, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 3, 'name': 'Cafe Latte', 'price': 5.5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 4, 'name': 'Vanilla Latte', 'price': 6.5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 5, 'name': 'Caramel Latte', 'price':6.5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 6, 'name': 'Long Black', 'price': 4, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 7, 'name': 'Short Black', 'price': 4, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 8, 'name': 'Americano', 'price': 4, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 9, 'name': 'Macchiato', 'price': 4.5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 10, 'name': 'Piccolo Latte', 'price': 4.5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 11, 'name': 'Caramel Affogato', 'price': 7.5, 'popular': False, 'type': 'coffee', 'image': 'static/coffee.jpeg'},
+    {'ID': 12, 'name': 'Mocha', 'price': 6, 'popular': True, 'type': 'chocolate', 'image': 'static/coffee.jpeg'},
+    {'ID': 13, 'name': 'Hot Chocolate', 'price': 5.5, 'popular': False, 'type': 'chocolate', 'image': 'static/coffee.jpeg'},
+    {'ID': 14, 'name': 'White Hot Chocolate', 'price': 6.5, 'popular': False, 'type': 'chocolate', 'image': 'static/coffee.jpeg'},
+    {'ID': 15, 'name': 'White Chocolate Mocha', 'price': 6.8, 'popular': True, 'type': 'chocolate', 'image': 'static/coffee.jpeg'},
+    {'ID': 16, 'name': 'English Breakfast', 'price': 4.5, 'popular': False, 'type': 'tea', 'image': 'static/coffee.jpeg'},
+    {'ID': 17, 'name': 'Green Tea', 'price': 4.5, 'popular': True, 'type': 'tea', 'image': 'static/coffee.jpeg'},
+    {'ID': 18, 'name': 'Ginger Tea', 'price': 4.5, 'popular': False, 'type': 'tea', 'image': 'static/coffee.jpeg'},
+    {'ID': 19, 'name': 'Lemon Tea', 'price': 4.5, 'popular': False, 'type': 'tea', 'image': 'static/coffee.jpeg'},
+    {'ID': 20, 'name': 'Ice Coffee', 'price': 7, 'popular': False, 'type': 'cold', 'image': 'static/coffee.jpeg'},
+    {'ID': 21, 'name': 'Ice Chocolate', 'price': 7, 'popular': False, 'type': 'cold', 'image': 'static/coffee.jpeg'},
+    {'ID': 22, 'name': 'Ice Americano', 'price': 6, 'popular': False, 'type': 'cold', 'image': 'static/coffee.jpeg'},
+    {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': True, 'type': 'cold', 'image': 'static/coffee.jpeg'}
 ]
 
 #connects to the sqlite databse and creates a table for 
@@ -93,6 +94,7 @@ def index1():
     return render_template('index1.html')
 @app.route('/DrinkMenu')
 def DrinkMenu():
+
     if 'cart' in session:
         orders = session['cart']
         total_cost = sum(order['total_cost'] for order in orders)
@@ -139,27 +141,45 @@ def cart_display():
         flash("Your cart is empty.", "info")
         return render_template('cart.html', orders=[], total_cost=0)
     
+# @app.route('/place_order', methods=['POST'])
+# def place_order():
+#     con = sqlite3.connect('new_orders1.db', check_same_thread=False)
+#     cursor = con.cursor()
+
+#     cursor.execute("SELECT * FROM orderList")
+#     orders_before_placing = cursor.fetchall()
+
+#     # Optionally, you can perform additional processing or validation here
+
+#     # Clear the cart after placing the order
+#     cursor.execute("DELETE FROM orderList")
+#     con.commit()
+
+#     cursor.execute("SELECT * FROM orderList")
+#     orders_after_placing = cursor.fetchall()
+
+#     print("Orders before placing:", orders_before_placing)
+#     print("Orders after placing:", orders_after_placing)
+
+#     return render_template('order_confirmation.html', orders=orders_before_placing)
+
 @app.route('/place_order', methods=['POST'])
 def place_order():
-    con = sqlite3.connect('new_orders1.db', check_same_thread=False)
-    cursor = con.cursor()
+    if 'cart' in session:
+        orders_before_placing = session['cart']
 
-    cursor.execute("SELECT * FROM orderList")
-    orders_before_placing = cursor.fetchall()
+        # Optionally, you can perform additional processing or validation here
 
-    # Optionally, you can perform additional processing or validation here
+        # Clear the cart after placing the order
+        session.pop('cart', None)
 
-    # Clear the cart after placing the order
-    cursor.execute("DELETE FROM orderList")
-    con.commit()
+        print("Orders before placing:", orders_before_placing)
+        print("Cart after placing:", session.get('cart'))
 
-    cursor.execute("SELECT * FROM orderList")
-    orders_after_placing = cursor.fetchall()
-
-    print("Orders before placing:", orders_before_placing)
-    print("Orders after placing:", orders_after_placing)
-
-    return render_template('order_confirmation.html', orders=orders_before_placing)
+        return render_template('order_confirmation.html', orders=orders_before_placing)
+    else:
+        flash("Your cart is empty.", "info")
+        return render_template('order_confirmation.html', orders=[])
 
 
 ########################################
@@ -229,40 +249,6 @@ def check_session():
 @app.route('/settings')
 def settings():
     return render_template('settingspage.html')
-
-##########################################################
-##########################################################
-##########################################################
-#Testing sessions with this code dw about it
-
-@app.route('/set_email', methods=['GET', 'POST'])
-def set_email():
-    if request.method == 'POST':
-        # Save the form data to the session object
-        session['email'] = request.form['email_address']
-        return redirect(url_for('get_email'))
-
-    return """
-        <form method="post">
-            <label for="email">Enter your email address:</label>
-            <input type="email" id="email" name="email_address" required />
-            <button type="submit">Submit</button
-        </form>
-        """
-
-
-@app.route('/get_email', methods=['GET', 'POST'])
-def get_email():
-    return render_template_string("""
-            <h1>Welcome </h1>
-            {% if session['cart'] %}
-                <h1>Welcome {{ session['email'] }}!</h1>
-            {% endif %}
-        """)
-
-##########################################################
-##########################################################
-############################################################
 
 if __name__ == '__main__':
     add_user("admin", "password")

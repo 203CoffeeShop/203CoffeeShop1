@@ -12,7 +12,7 @@
                         {% if item.popular == True %}
                         <div class="button-align">
                             <li class="LI-Design">
-                                <img class="image" src="static/coffee.jpeg" alt="">
+                                <img class="image" src="{{ item.image }}" alt="">
                                 <form class="add-to-cart-form">
                                     <div style="display: flex; flex-direction: column; align-items: center;">
                                         <input type="hidden" name="coffee_name" value="{{ item.name }}">
@@ -177,7 +177,7 @@
             <h2 style="color: white;">Cart</h2>
             <ul>
                 {% for order in orders %}
-                    <li style="color: white;">{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }} - Total: ${{ order['total_cost'] }}</li>
+                    <li style="color: white;">{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
                 {% endfor %}
             </ul>
             <p style="color: white;">Total Cost: ${{ total_cost }}</p>
@@ -192,7 +192,7 @@
                 <!-- Cart content goes here -->
                 <ul>
                     {% for order in orders %}
-                        <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }} - Total: ${{ order['total_cost'] }}</li>
+                        <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
                     {% endfor %}
                 </ul>
                 <p style="color: white;">Total Cost: ${{ total_cost }}</p>
