@@ -10,14 +10,6 @@ app.config["PERMANENT_SESSION_LIFETIME"] = 3600
 Session(app)
 app.secret_key = 'your_secret_key'
 
-###############################################
-###############################################
-###############################################
-
-###############################################
-###############################################
-###############################################
-
 #Connects to the sqlite Database and creates a table for the 
 #infomation needed if one doesn't exist with that name
 con = sqlite3.connect('new_orders1.db', check_same_thread=False)
@@ -128,9 +120,7 @@ def get_user(username):
 @app.route('/base')
 def base():
     return render_template('base.html')
-@app.route('/index1')
-def index1():
-    return render_template('index1.html')
+
 @app.route('/DrinkMenu')
 def DrinkMenu():
 
@@ -195,16 +185,6 @@ def place_order():
 @app.route('/home')
 def home():
     return render_template('index.html', menu=menu)
-
-@app.route('/drinks', methods=['GET','POST'])
-def drinks():
-    if request.method == 'POST':
-        session['cart'] = request.form['cart']
-    return render_template('drinks.html', menu=menu)
-
-@app.route('/orders', methods=['POST'])
-def orders():
-    return render_template('orderpage.html')
 
 #The start page when you visit the website
 #Takes information from the user and checks if it exists in the database, if so 
