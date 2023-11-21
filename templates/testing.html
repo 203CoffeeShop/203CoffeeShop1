@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constantly Updating Session</title>
+</head>
+<body>
+    <h1 id="counter">Counter: {{ session_data.counter }}</h1>
+
+    <script>
+        function updateCounter() {
+    // Fetch updated data from the server
+    fetch('http://127.0.0.1:5000/get_data')
+        .then(response => response.json())
+        .then(data => {
+            // Update the HTML content
+            document.getElementById('counter').innerText = 'Counter: ' + data.counter;
+        });
+}
+
+// Periodically update the counter
+setInterval(updateCounter, 1000); // Update every 1 second
+
+    </script>
+</body>
+</html>

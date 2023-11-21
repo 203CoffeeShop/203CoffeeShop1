@@ -1,12 +1,22 @@
 from flask import Flask, render_template, render_template_string, request, redirect, url_for, session, jsonify, flash,sessions
+import threading, time
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
-import sqlite3, time
+import sqlite3
 
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["PERMANENT_SESSION_LIFETIME"] = 3600
 Session(app)
+app.secret_key = 'your_secret_key'
+
+###############################################
+###############################################
+###############################################
+
+###############################################
+###############################################
+###############################################
 
 #Connects to the sqlite Database and creates a table for the 
 #infomation needed if one doesn't exist with that name
@@ -22,7 +32,6 @@ cursor.execute('''
 ''')
 
 con.commit()
-
 
 #List which contains all the drink which can be purchased
 menu = [
@@ -50,6 +59,36 @@ menu = [
     {'ID': 22, 'name': 'Ice Americano', 'price': 6, 'popular': False, 'type': 'cold', 'image': 'static/images/iced-americano.png'},
     {'ID': 23, 'name': 'Ice Latte', 'price': 7, 'popular': True, 'type': 'cold', 'image': 'static/images/iced-latte.jpg'}
 ]
+####################
+
+session_data = {'counter': 0}
+
+def background_task():
+    global session_data
+    while True:
+        # Update the session-like data
+        session_data['counter'] += 1
+        time.sleep(300/1000)
+
+# Start the background task in a separate thread
+thread = threading.Thread(target=background_task)
+thread.start()
+
+@app.route('/get_data')
+def get_data():
+    global session_data
+    return jsonify(session_data)
+
+@app.route('/get_cart_data')
+def get_cart_data():
+    if 'cart' in session:
+        orders = session['cart']
+        total_cost = sum(order['total_cost'] for order in orders)
+        return jsonify({'cart': orders, 'total_cost': total_cost})
+    else:
+        return jsonify({'cart': [], 'total_cost': 0})
+
+########################
 
 #connects to the sqlite databse and creates a table for 
 # user information if one already doesn't exist
@@ -98,9 +137,9 @@ def DrinkMenu():
     if 'cart' in session:
         orders = session['cart']
         total_cost = sum(order['total_cost'] for order in orders)
-        return render_template('DrinkMenu.html', orders=orders, total_cost=total_cost, menu=menu)
+        return render_template('DrinkMenu.html', orders=orders, total_cost=total_cost, menu=menu, session_data=session_data)
     else:
-        return render_template('DrinkMenu.html', menu=menu)
+        return render_template('DrinkMenu.html', menu=menu, session_data=session_data)
     
 
 @app.route('/cart', methods=['POST'])
@@ -128,40 +167,9 @@ def cart():
 
     session['cart'].append(item)
     session.modified = True  # Ensure session is saved
-
+    
     return jsonify()
 
-@app.route('/cart_display')
-def cart_display():
-    if 'cart' in session:
-        orders = session['cart']
-        total_cost = sum(order['total_cost'] for order in orders)
-        return render_template('cart.html', orders=orders, total_cost=total_cost)
-    else:
-        flash("Your cart is empty.", "info")
-        return render_template('cart.html', orders=[], total_cost=0)
-    
-# @app.route('/place_order', methods=['POST'])
-# def place_order():
-#     con = sqlite3.connect('new_orders1.db', check_same_thread=False)
-#     cursor = con.cursor()
-
-#     cursor.execute("SELECT * FROM orderList")
-#     orders_before_placing = cursor.fetchall()
-
-#     # Optionally, you can perform additional processing or validation here
-
-#     # Clear the cart after placing the order
-#     cursor.execute("DELETE FROM orderList")
-#     con.commit()
-
-#     cursor.execute("SELECT * FROM orderList")
-#     orders_after_placing = cursor.fetchall()
-
-#     print("Orders before placing:", orders_before_placing)
-#     print("Orders after placing:", orders_after_placing)
-
-#     return render_template('order_confirmation.html', orders=orders_before_placing)
 
 @app.route('/place_order', methods=['POST'])
 def place_order():
@@ -235,8 +243,11 @@ def add_to_cart():
 
         session['cart'].append(item)
         session.modified = True  # Ensure session is saved
+        print(session['cart'])
 
-        return jsonify()
+        # Return the updated cart data
+        return jsonify({'cart': session['cart']})
+
     
 @app.route('/check_session')
 def check_session():

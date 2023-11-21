@@ -1,6 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<h1 style=" position: absolute; top: 0; right: 0; opacity: 0%; height: 0%; width: 0%; margin: 0%; padding: 0%;" id="counter">Counter: {{ session_data.counter }}</h1>
+
+<script>
+    function updateCounter() {
+        // Fetch updated data from the server
+        fetch('http://127.0.0.1:5000/get_data')
+            .then(response => response.json())
+            .then(data => {
+                // Update the HTML content
+                document.getElementById('counter').innerText = 'Counter: ' + data.counter;
+
+                // Update the cart content
+                fetch('http://127.0.0.1:5000/get_cart_data')
+                    .then(response => response.json())
+                    .then(cartData => {
+                        updateCart(cartData);
+                    })
+            })
+    }
+
+    function updateCart(cartData) {
+        var myNav = document.getElementById('myNav');
+        var cartContent = myNav.querySelector('.overlay-content');
+
+        // Clear existing cart content
+        cartContent.innerHTML = '';
+
+        // Update cart content with the new data
+        var cartList = document.createElement('ul');
+        cartData.cart.forEach(order => {
+            var li = document.createElement('li');
+            li.textContent = `${order.coffee_name} - $${order.price} - Amount: ${order.amount}`;
+            cartList.appendChild(li);
+        });
+
+        var totalCost = document.createElement('p');
+        totalCost.textContent = `Total Cost: $${cartData.total_cost}`;
+
+        var placeOrderForm = document.createElement('form');
+        placeOrderForm.action = '/place_order';
+        placeOrderForm.method = 'post';
+        var submitButton = document.createElement('input');
+        submitButton.type = 'submit';
+        submitButton.value = 'Place Order';
+        placeOrderForm.appendChild(submitButton);
+
+        cartContent.appendChild(cartList);
+        cartContent.appendChild(totalCost);
+        cartContent.appendChild(placeOrderForm);
+    }
+
+    // Periodically update the counter and cart
+    setInterval(updateCounter, 1000); // Update every 1 second
+</script>
+
+
+
     <div>
         <div class="image-center-align">
             <div style="display: flex; width: 90%;">
@@ -186,39 +244,11 @@
                 <input type="submit" value="Place Order">
             </form>
         
-            <button id="toggleCartBtn">Toggle Cart</button>
-        
-            <div id="cartContent" style="display: none;">
-                <!-- Cart content goes here -->
-                <ul>
-                    {% for order in orders %}
-                        <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
-                    {% endfor %}
-                </ul>
-                <p style="color: white;">Total Cost: ${{ total_cost }}</p>
-            </div>
             <!-- -->
             </div>
         </div>
     </div>
 
-    <!--    -->
-    <script>
-        // Add JavaScript to toggle the cart content visibility
-        document.addEventListener('DOMContentLoaded', function () {
-            var toggleCartBtn = document.getElementById('toggleCartBtn');
-            var cartContent = document.getElementById('cartContent');
-
-            toggleCartBtn.addEventListener('click', function() {
-                if (cartContent.style.display === 'none') {
-                    cartContent.style.display = 'block';
-                } else {
-                    cartContent.style.display = 'none';
-                }
-            });
-        });
-    </script>
-    <!--    -->
 
     <script>
         // Add JavaScript to handle adding items to the cart using AJAX
@@ -243,14 +273,11 @@
                 },
                 body: JSON.stringify(formData),
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Response:', data);
-                alert(data.message);
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
+            // .then(response => response.json())
+            // .then(data => {
+            //     console.log('Response:', data);
+            //     alert(data.message);
+            // })
         });
     });
 });

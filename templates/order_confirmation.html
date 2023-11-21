@@ -4,8 +4,9 @@
     <h2>Order Confirmation</h2>
     <ul>
         {% for order in orders %}
-            <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Quantity: {{ order['quantity'] }} - Total: ${{ order['total_cost'] }}</li>
+            <li >{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
         {% endfor %}
     </ul>
+    <p >Total Cost: ${{ total_cost }}</p>
     <p>Thank you for your order!</p>
 {% endblock %}
