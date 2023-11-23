@@ -168,7 +168,7 @@ def place_order():
 
         # Optionally, you can perform additional processing or validation here
 
-        # Clear the cart after placing the order
+        # # Clear the cart after placing the order
         session.pop('cart', None)
 
         print("Orders before placing:", orders_before_placing)

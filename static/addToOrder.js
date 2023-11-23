@@ -43,3 +43,6 @@ function openNav()
 {
     document.getElementById("myNav").style.height = "100%";
 }
+
+
+document.getElementById("FinalCost").textContent = "Total Cost $" + totalPrice.toFixed(2);

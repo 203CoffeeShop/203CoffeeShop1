@@ -4,9 +4,21 @@
     <h2>Order Confirmation</h2>
     <ul>
         {% for order in orders %}
-            <li >{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
+            <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
         {% endfor %}
     </ul>
-    <p >Total Cost: ${{ total_cost }}</p>
+    <p>Total Cost: $<span id="totalCost"></span></p>
     <p>Thank you for your order!</p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var orders = {{ orders | tojson }};
+            var totalCost = 0;
+
+            for (var i = 0; i < orders.length; i++) {
+                totalCost += orders[i]['price'] * orders[i]['amount'];
+            }
+
+            document.getElementById('totalCost').textContent = totalCost.toFixed(2);
+        });
+    </script>
 {% endblock %}
