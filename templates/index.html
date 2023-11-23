@@ -7,6 +7,7 @@
     <!-- <link rel="stylesheet" href="static/style.css" type="text/css" media="all"> -->
     <link rel="stylesheet" href="static/taskbar.css" type="text/css" media="all">
     <link rel="stylesheet" href="static/homestyle.css" type="text/css" media="all">
+    <link rel="stylesheet" href="static/cartstyle.css" type="text/css" media="all">
 </head> 
 <body>
   <header>
@@ -56,5 +57,26 @@
           </div>
         </div>
       </footer>
+
+      <div id="myNav" class="overlay" style="height: 0%;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <!-- -->
+            <h2 style="color: white;">Cart</h2>
+            <ul>
+                {% for order in orders %}
+                    <li style="color: white;">{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
+                {% endfor %}
+            </ul>
+            <p style="color: white;">Total Cost: ${{ total_cost }}</p>
+            
+            <form action="/place_order" method="post">
+                <input type="submit" value="Place Order">
+            </form>
+        
+            <!-- -->
+            </div>
+        </div>
+        <script src="static/addToOrder.js"></script>
 </body>
 </html>

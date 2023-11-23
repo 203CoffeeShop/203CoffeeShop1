@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Order Confirmation</h2>
-    <ul>
-        {% for order in orders %}
-            <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
-        {% endfor %}
-    </ul>
-    <p>Total Cost: $<span id="totalCost"></span></p>
-    <p>Thank you for your order!</p>
+
+
+<div class="center">
+    <h1>Order Confirmation</h1>
+    <div class="center-info">
+        <ul style="font-size: 30px;">
+            {% for order in orders %}
+                <li>{{ order['coffee_name'] }} - ${{ order['price'] }} - Amount: {{ order['amount'] }}</li>
+            {% endfor %}
+        </ul>
+        <p style="font-size: 30px;" id="totalCost"></p>
+        <p style="font-size: 30px;">Thank you for your order!</p>
+    </div>
+    <form action="/home">
+        <input type="submit" value="Go Back">
+    </form>
+</div>
+    
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var orders = {{ orders | tojson }};
@@ -18,7 +29,8 @@
                 totalCost += orders[i]['price'] * orders[i]['amount'];
             }
 
-            document.getElementById('totalCost').textContent = totalCost.toFixed(2);
+            document.getElementById('totalCost').textContent = "Total Cost: $" + totalCost.toFixed(2);
         });
     </script>
+
 {% endblock %}
